@@ -1,3 +1,21 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'accounts/new'
+
+  get 'accounts/show'
+
+  get 'accounts/edit'
+
+  get 'accounts/index'
+
+  get 'usernames/new'
+
+  get 'usernames/show'
+
+  get 'usernames/edit'
+
+  get 'usernames/index'
+
+  resources :usernames do
+    resources :accounts
+  end
 end

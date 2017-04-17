@@ -1,0 +1,7 @@
+<% render "layouts/errors", :object => @username %>
+
+<%= form_for @username do |f| %>
+    <%= f.label = :name %>
+    <%= f.label = :email %>
+    <%= f.submit %>
+<% end %>

@@ -1,2 +1,17 @@
-<h1>Usernames#index</h1>
-<p>Find me in app/views/usernames/index.html.erb</p>
+
+<hr>
+
+<center><h1>Registered Users:</h1></center>
+
+<hr>
+
+<ul>
+    <% @usernames.each do |username| %>
+        <li><%= link_to username.name, username_path(username) %></li> 
+    <% end %>
+</ul>
+
+<hr>
+
+<br>
+<%= link_to "New Username", new_username_path %>

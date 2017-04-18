@@ -1,0 +1,11 @@
+<% render "layouts/errors", :object => @account %>
+
+<%= form_for [@username, @account] do |f| %>
+    <%= f.label :application %>
+    <%= f.text_field :application%> <br> <br>
+    <%= f.label :user %>
+    <%= f.text_field :user %> <br> <br>
+    <%= f.label :password %>
+    <%= f.text_field :password %> <br> <br>
+    <%= f.submit %>
+<% end %>

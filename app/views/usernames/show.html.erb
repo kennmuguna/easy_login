@@ -1,2 +1,35 @@
-<h1>Usernames#show</h1>
-<p>Find me in app/views/usernames/show.html.erb</p>
+<br>
+<hr>
+
+<h1><center><%= @username.name %></center></h1>
+
+<hr>
+
+    <% if @username.accounts.any? %>
+    <h3>Here are the Accounts registered under <% @username.name %></h3>
+
+    <ul>
+    <% @username.accounts.each do |account| %>
+        <li>
+            <%= account.user %>
+            <%= account.password %>
+            <%= link_to "Edit", edit_username_account_path(@username, account) %>
+            <%= link_to "Delete", username_account_path(@username, account),
+                                            :data => { :confirm => "Are you sure?",
+                                                       :method => "delete" } %>
+        </li>
+        <% end %>
+    </ul>
+
+        <% else %>
+        <h3><%= @username.name %> hasn't added any accounts yet</h3>
+        <% end %>
+
+        <p><%= link_to "Add an account", new_username_account_path(@username) %></p>
+        <p><%= link_to "Delete this Username", username_path(@username),
+                                        :data => { :confirm =>"Are you sure?",
+                                                   :method => "delete" } %> </p>
+
+        <p><%= link_to "Return to Usernames", usernames_path %><p>
+
+       

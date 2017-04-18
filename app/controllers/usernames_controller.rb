@@ -1,6 +1,19 @@
 class UsernamesController < ApplicationController
+  def index
+    @usernames = Username.all
+  end
+  
   def new
     @username = Username.new
+  end
+
+  def create
+    @username = Username.new(username_params)
+    if @username.save
+      redirect_to usernames_path
+    else
+      render :new
+    end
   end
 
   def show
@@ -11,7 +24,24 @@ class UsernamesController < ApplicationController
     @username = Username.find(params[:id])
   end
 
-  def index
-    @usernames = Username.all
+  def update
+    @username = Username.find(params[:id])
+    if @username.update(username_params)
+      redirect_to usernames_path
+    else
+      render :edit
+    end
   end
+  
+  def destroy
+    @username = Username.find(params[:id])
+    @username.destroy
+    redirect_to usernames_path
+  end
+  
+  private 
+    def username_params
+      params.require(:username).permit(:name, :email)
+    end
+
 end

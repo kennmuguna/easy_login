@@ -1,17 +1,37 @@
 
 <hr>
 
-<center><h1>Registered Users:</h1></center>
+<center><h1>Welcome to EasyLogin</h1></center>
 
 <hr>
 
+<center><h3>Your One Stop Solution towards storing all your Password credentials</h3></center>
+
+<hr>
+
+<div class="Image">
+
+<% if user_signed_in? %>
+<h4>Logged in as <%= current_user.email %></h4>
+<h3><%= link_to "View Profile", edit_user_registration_path %></h3>
+<h3><%= link_to "Log Out", destroy_user_session_path,:method => "delete" %></h3> <br>
+<% else %>
+<h3><%= link_to "Sign Up", new_user_registration_path %></h3>
+<h3><%= link_to "Log In", new_user_session_path %></h3>
+<% end %>
+
+
+<% if user_signed_in? %>
 <ul>
     <% @usernames.each do |username| %>
-        <li><%= link_to username.name, username_path(username) %></li> <br>
+        <h3><%= link_to username.name, username_path(username) %></h3> <br>
     <% end %>
 </ul>
 
-<hr>
+
 
 <br>
-<%= link_to "New Username", new_username_path %>
+<h3><%= link_to "New Username", new_username_path %></h3>
+<% end %>
+
+</div>

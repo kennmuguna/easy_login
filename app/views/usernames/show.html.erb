@@ -6,17 +6,18 @@
 <hr>
 
     <% if @username.accounts.any? %>
-    <h3>Here are the Accounts registered under <% @username.name %></h3>
+    <h3>Here are the Login Credentials saved by <%= @username.name %>:</h3>
 
     <ul>
     <% @username.accounts.each do |account| %>
         <li>
-            <%= account.user %>
-            <%= account.password %>
+            <em>Application:</em> <strong><%= account.application %></strong> <br>
+            <em>User credentials:</em> <strong><%= account.user %></strong> <br>
+            <em>App Password: </em> <strong><%= account.password %></strong> <br> 
             <%= link_to "Edit", edit_username_account_path(@username, account) %>
             <%= link_to "Delete", username_account_path(@username, account),
                                             :data => { :confirm => "Are you sure?",
-                                                       :method => "delete" } %>
+                                                       :method => "delete" } %> <br> <br>
         </li>
         <% end %>
     </ul>

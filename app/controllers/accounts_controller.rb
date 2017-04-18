@@ -22,7 +22,27 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    @username = Username.find(params[:username_id])
+    @account = Account.find(params[:id])
   end
+
+  def update
+    @username = Username.find(params[:username_id])
+    @account = Account.find(params[:id])
+    if @account.update(account_params)
+      redirect_to username_path(@account.username)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @username = Username.find(params[:username_id])
+    @account = Account.find(params[:id])
+    @account.destroy
+    redirect_to username_path(@account.username)
+  end
+
 
   private
     def account_params
